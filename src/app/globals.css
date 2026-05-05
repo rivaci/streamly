@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 6%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 10%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 60%;
+  --border: 0 0% 18%;
+  --accent: 0 0% 20%;
+  --accent-foreground: 0 0% 95%;
+}
+
+[data-theme="light"] {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 98%;
+  --muted: 0 0% 95%;
+  --muted-foreground: 0 0% 40%;
+  --border: 0 0% 88%;
+  --accent: 0 0% 90%;
+  --accent-foreground: 0 0% 10%;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+    --card: 0 0% 98%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+    --border: 0 0% 88%;
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 10%;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Better focus visibility — accessibility. */
+:focus-visible {
+  outline: 2px solid hsl(0 100% 50% / 0.7);
+  outline-offset: 2px;
+}
+
+/* Hide native scrollbar for carousel-style horizontal scrolls. */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
