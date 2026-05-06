@@ -110,5 +110,7 @@ export const en: Dict = {
     back: "Back",
     error: "Something went wrong",
     retry: "Retry",
+    carouselPrev: "Show previous items",
+    carouselNext: "Show more items",
   },
 };

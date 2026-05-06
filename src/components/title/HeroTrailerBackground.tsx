@@ -74,31 +74,34 @@ export function HeroTrailerBackground({
 
   return (
     <>
-      {backdropUrl && (
-        <Image
-          src={backdropUrl}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={`object-cover transition-opacity duration-1000 ${showVideo ? "opacity-0" : "opacity-60"}`}
-        />
-      )}
-
-      {showVideo && embedUrl && (
-        <div ref={containerRef} className="absolute inset-0 overflow-hidden">
-          <iframe
-            ref={iframeRef}
-            src={embedUrl}
-            title="Background trailer"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope"
-            className="h-[120%] w-[120%] origin-center -translate-x-[8.33%] -translate-y-[8.33%] opacity-80 transition-opacity duration-1000"
-            style={{ border: 0, pointerEvents: "none" }}
-            tabIndex={-1}
-            aria-hidden="true"
+      {/* Pin all media to the hero box so it always fills from the top (avoids a black void on narrow viewports). */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        {backdropUrl && (
+          <Image
+            src={backdropUrl}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className={`object-cover object-top transition-opacity duration-1000 sm:object-center ${showVideo ? "opacity-0" : "opacity-60"}`}
           />
-        </div>
-      )}
+        )}
+
+        {showVideo && embedUrl && (
+          <div ref={containerRef} className="absolute inset-0 overflow-hidden">
+            <iframe
+              ref={iframeRef}
+              src={embedUrl}
+              title="Background trailer"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope"
+              className="h-[120%] w-[120%] origin-center -translate-x-[8.33%] -translate-y-[6%] opacity-80 transition-opacity duration-1000 sm:-translate-y-[8.33%]"
+              style={{ border: 0, pointerEvents: "none" }}
+              tabIndex={-1}
+              aria-hidden="true"
+            />
+          </div>
+        )}
+      </div>
 
       {showVideo && videoKey && (
         <button

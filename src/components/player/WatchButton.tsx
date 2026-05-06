@@ -7,9 +7,13 @@ import { ComingSoonToast } from "./ComingSoonToast";
 
 interface WatchButtonProps {
   variant?: "hero" | "card";
+  iconOnlyOnMobile?: boolean;
 }
 
-export function WatchButton({ variant = "hero" }: WatchButtonProps) {
+export function WatchButton({
+  variant = "hero",
+  iconOnlyOnMobile = false,
+}: WatchButtonProps) {
   const { t } = useI18n();
   const [showToast, setShowToast] = useState(false);
   const dismiss = useCallback(() => setShowToast(false), []);
@@ -38,7 +42,9 @@ export function WatchButton({ variant = "hero" }: WatchButtonProps) {
         >
           <path d="M8 5v14l11-7z" />
         </svg>
-        {t("title.watch")}
+        <span className={iconOnlyOnMobile ? "hidden sm:inline" : ""}>
+          {t("title.watch")}
+        </span>
       </Button>
       {showToast && <ComingSoonToast onDone={dismiss} />}
     </>

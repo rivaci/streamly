@@ -10,12 +10,16 @@ interface WatchlistButtonProps {
   item: WatchlistItem;
   variant?: "overlay" | "inline";
   className?: string;
+  iconOnlyOnMobile?: boolean;
+  showText?: boolean;
 }
 
 export function WatchlistButton({
   item,
   variant = "overlay",
   className: extraClassName,
+  iconOnlyOnMobile = false,
+  showText = true,
 }: WatchlistButtonProps) {
   const list = useWatchlist();
   const isIn = list.some((i) => i.type === item.type && i.id === item.id);
@@ -75,7 +79,11 @@ export function WatchlistButton({
         </svg>
       )}
       {variant === "inline" && (
-        <span>{isIn ? t("watchlist.remove") : t("watchlist.add")}</span>
+        showText && (
+          <span className={iconOnlyOnMobile ? "hidden sm:inline" : ""}>
+            {isIn ? t("watchlist.remove") : t("watchlist.add")}
+          </span>
+        )
       )}
     </button>
   );

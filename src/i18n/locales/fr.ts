@@ -108,5 +108,7 @@ export const fr = {
     back: "Retour",
     error: "Une erreur est survenue",
     retry: "Réessayer",
+    carouselPrev: "Voir les éléments précédents",
+    carouselNext: "Voir les éléments suivants",
   },
 } as const;

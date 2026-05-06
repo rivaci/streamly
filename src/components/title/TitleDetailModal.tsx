@@ -63,35 +63,35 @@ export function TitleDetailModal({ children }: TitleDetailModalProps) {
       role="dialog"
       aria-modal="true"
       onClick={handleOverlayClick}
-      className="fixed inset-0 z-[80] flex justify-center overflow-y-auto bg-black/70 backdrop-blur-sm"
+      className="fixed inset-0 z-[80] flex overflow-y-auto bg-black/70 backdrop-blur-sm md:justify-center"
     >
-      <div className="relative my-10 w-full max-w-5xl animate-in fade-in zoom-in-95 duration-200">
-        <button
-          type="button"
-          onClick={close}
-          aria-label={t("player.close")}
-          className="sticky top-4 z-10 float-right mr-4 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white/80 transition-colors hover:bg-black/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-5 w-5"
-            aria-hidden="true"
-          >
-            <path d="M18 6 6 18" />
-            <path d="m6 6 12 12" />
-          </svg>
-        </button>
+      <div className="relative min-h-[100dvh] w-full md:my-8 md:h-auto md:min-h-0 md:max-w-5xl">
         <div
           ref={contentRef}
-          className="overflow-hidden rounded-xl bg-background shadow-2xl"
+          className="relative flex min-h-[100dvh] flex-col overflow-y-auto bg-background shadow-2xl md:min-h-0 md:max-h-[90vh] md:rounded-xl"
           onClick={handleContentClick}
         >
+          <button
+            type="button"
+            onClick={close}
+            aria-label={t("player.close")}
+            className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white/80 transition-colors hover:bg-black/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-5 w-5"
+              aria-hidden="true"
+            >
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
           {children}
         </div>
       </div>

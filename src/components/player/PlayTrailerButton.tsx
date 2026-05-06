@@ -16,9 +16,16 @@ interface PlayTrailerButtonProps {
   title: string;
   secondary?: boolean;
   className?: string;
+  iconOnlyOnMobile?: boolean;
 }
 
-export function PlayTrailerButton({ videoKey, title, secondary, className }: PlayTrailerButtonProps) {
+export function PlayTrailerButton({
+  videoKey,
+  title,
+  secondary,
+  className,
+  iconOnlyOnMobile = false,
+}: PlayTrailerButtonProps) {
   const [open, setOpen] = useState(false);
   const { t } = useI18n();
 
@@ -29,17 +36,27 @@ export function PlayTrailerButton({ videoKey, title, secondary, className }: Pla
         size="lg"
         onClick={() => setOpen(true)}
         className={`gap-2 ${className ?? ""}`}
+        aria-label={t("title.playTrailer")}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className="h-5 w-5"
           aria-hidden="true"
         >
-          <path d="M8 5v14l11-7z" />
+          <path d="M4 7h16" />
+          <path d="M4 7l2-3h14l-2 3" />
+          <rect x="4" y="7" width="16" height="13" rx="2" />
+          <path d="M10 11l5 3-5 3z" />
         </svg>
-        {t("title.playTrailer")}
+        <span className={iconOnlyOnMobile ? "hidden sm:inline" : ""}>
+          {t("title.playTrailer")}
+        </span>
       </Button>
       {open && (
         <TrailerModal

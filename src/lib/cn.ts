@@ -1,6 +1,8 @@
-/** Tiny classnames helper (no clsx dependency to keep the bundle slim). */
+import { twMerge } from "tailwind-merge";
+
+/** Classnames helper with Tailwind conflict resolution via tailwind-merge. */
 export function cn(
   ...parts: Array<string | undefined | null | false>
 ): string {
-  return parts.filter(Boolean).join(" ");
+  return twMerge(parts.filter(Boolean).join(" "));
 }

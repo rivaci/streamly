@@ -29,7 +29,7 @@ export function TitleHero({
   ].filter(Boolean);
 
   return (
-    <header className="relative isolate overflow-hidden bg-black" style={{ minHeight: "70vh" }}>
+    <header className="relative isolate min-h-[52vh] overflow-hidden bg-black sm:min-h-[62vh] md:min-h-[70vh]">
       <HeroTrailerBackground
         videoKey={title.trailer_key}
         backdropUrl={title.backdrop_url}
@@ -37,7 +37,7 @@ export function TitleHero({
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/70 to-transparent" />
       <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-black/80 to-transparent" />
 
-      <Container className="relative flex h-full min-h-[70vh] items-end pb-10 md:pb-14">
+      <Container className="relative flex h-full min-h-[52vh] items-end pb-10 sm:min-h-[62vh] md:min-h-[70vh] md:pb-14">
         <div className="max-w-2xl text-white">
           <h1 className="text-3xl font-bold tracking-tight drop-shadow-lg md:text-5xl">
             {title.title}
@@ -68,13 +68,14 @@ export function TitleHero({
             </p>
           )}
           <div className="mt-6 flex flex-wrap gap-3">
-            <WatchButton variant="hero" />
+            <WatchButton variant="hero" iconOnlyOnMobile />
             {title.trailer_key && (
               <PlayTrailerButton
                 videoKey={title.trailer_key}
                 title={title.title}
                 secondary
                 className="border-white/30 text-white hover:bg-white/10"
+                iconOnlyOnMobile
               />
             )}
             <WatchlistButton
@@ -87,12 +88,14 @@ export function TitleHero({
                 year: title.year,
                 added_at: 0,
               }}
-              className="border-white/30 text-white hover:bg-white/10"
+              className="h-12 w-12 border-white/30 px-0 text-white hover:bg-white/10"
+              showText={false}
             />
             <ShareButton
               title={title.title}
               url={`/title/${title.type}/${title.id}`}
-              className="border-white/30 text-white hover:bg-white/10"
+              className="h-12 w-12 border-white/30 px-0 text-white hover:bg-white/10"
+              showText={false}
             />
           </div>
         </div>
